@@ -1,11 +1,10 @@
-import io from 'socket.io-client'
+import io from 'socket.io-client';
 
-const URL = ''
+const URL = 'http://localhost:8000/'
 
 const socket = io(URL)
 
-var mySocketId
-
+var mySocketId;
 socket.on('createNewGame', statusUpdate => {
     mySocketId = statusUpdate.mySocketId
 })
@@ -13,4 +12,5 @@ socket.on('createNewGame', statusUpdate => {
 export {
     socket,
     mySocketId
-}
+};
+

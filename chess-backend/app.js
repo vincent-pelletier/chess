@@ -9,6 +9,7 @@ const io = socketio(server);
 
 io.on('connection', client => {
     gameLogic.initializeGame(io, client);
+    console.log("Ready!");
 });
 
 server.listen(process.env.PORT || 8000);

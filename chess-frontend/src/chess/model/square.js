@@ -17,7 +17,7 @@ class Square {
             // move piece to square
             this.pieceOnThisSquare = newPiece;
             newPiece.setSquare(this);
-        } else if (this.getPieceIdOnThisSquare() != newPiece.id && this.pieceOnThisSquare.color != newPiece.color) {
+        } else if (this.getPieceIdOnThisSquare() !== newPiece.id && this.pieceOnThisSquare.color !== newPiece.color) {
             // yum
             this.pieceOnThisSquare = newPiece;
             newPiece.setSquare(this)

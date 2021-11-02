@@ -1,10 +1,10 @@
-var sio;
+var io;
 var gameSocket;
 
 var gamesInSession = [];
 
-const initializeGame = (io, client) => {
-    sio = io;
+const initializeGame = (sio, client) => {
+    io = sio;
     gameSocket = client;
     
     gamesInSession.push(gameSocket);
@@ -25,21 +25,20 @@ const initializeGame = (io, client) => {
 function playerJoinsGame(idData) {
     var sock = this;
 
-    var room = io.sockets.adapter.rooms[idData.gameId];
-
+    var room = io.sockets.adapter.rooms.get(idData.gameId);
     if(room === undefined) {
         this.emit('status', "This game session does not exist.");
         return;
     }
 
-    if(room.length < 2) {
+    if(room.size < 2) {
         idData.mySocketId = sock.id;
         sock.join(idData.gameId);
 
-        if(room.length === 2) {
+        if(room.size === 2) {
             io.sockets.in(idData.gameId).emit('start game', idData.userName);
         }
-        io.sockets.in(idData.game).emit('playerJoinedRoom', idData);
+        io.sockets.in(idData.gameId).emit('playerJoinedRoom', idData);
     } else {
         this.emit('status', "There are already 2 people in this room.");
     }

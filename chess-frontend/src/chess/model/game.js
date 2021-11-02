@@ -1,4 +1,4 @@
-import Chess from 'game.js';
+import Chess from 'chess.js';
 import ChessPiece from './chesspiece';
 import Square from './square';
 
@@ -207,15 +207,15 @@ class Game {
     makeStartingBoard() {
         const backRank = ["rook", "knight", "bishop", "queen", "king", "bishop", "knight", "rook"];
         var startingChessBoard = []
-        for(var i = 0; i < 8; i++) {
+        for(var k = 0; k < 8; k++) {
             startingChessBoard.push([]);
-            for(var j = 0; j < 8; j++) {
-                // i is horizontal
+            for(var l = 0; l < 8; l++) {
+                // k is horizontal
                 // j is vertical
-                const coordinatesOnCanvas = [((j+1) * 90 + 15), ((i+1) * 90 + 15)];
-                const emptySquare = new Square(j, i, null, coordinatesOnCanvas);
+                const coordinatesOnCanvas = [((l+1) * 90 + 15), ((k+1) * 90 + 15)];
+                const emptySquare = new Square(l, k, null, coordinatesOnCanvas);
 
-                startingChessBoard[i].push(emptySquare);
+                startingChessBoard[k].push(emptySquare);
             }
         }
 
@@ -223,7 +223,7 @@ class Game {
         const blackBackRankId = ["br1", "bn1", "bb1", "bq1", "bk1", "bb2", "bn2", "br2"];
         for(var j = 0; j < 8; j += 7) {
             for(var i = 0; i < 8; i++) {
-                if(j == 0) {
+                if(j === 0) {
                     // top
                     startingChessBoard[j][this.thisPlayerIsWhite ? i : 7 - i].setPiece(new ChessPiece(backRank[i], this.thisPlayerIsWhite ? blackBackRankId[i] : whiteBackRankId[i], false, this.thisPlayerIsWhite ? "black" : "white"));
                     startingChessBoard[j+1][this.thisPlayerIsWhite ? i : 7 - i].setPiece(new ChessPiece("pawn", this.thisPlayerIsWhite ? "bp" + i : "wp" + i, false, this.thisPlayerIsWhite ? "black" : "white"));
