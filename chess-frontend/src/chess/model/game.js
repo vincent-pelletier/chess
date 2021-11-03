@@ -83,12 +83,12 @@ class Game {
                 piece: pieceId[1],
                 promotion: 'q'
             });
-        
         if(moveAttempt === null) {
-            return "invalid name";
+            return "invalid move";
         }
 
         if(moveAttempt.flags === 'e') {
+            // pawn "en passant"
             const move = moveAttempt.to;
             const x = this.toAlphabet2[move[0]]
             let y;
@@ -129,7 +129,6 @@ class Game {
             return this.chess.turn() + check;
         }
 
-        console.log(currentBoard);
         this.setBoard(currentBoard);
     }
 
@@ -197,7 +196,7 @@ class Game {
     findPiece(board, pieceId) {
         for (var i = 0; i < 8; i++) {
             for (var j = 0; j < 8; j++) {
-                if(board[i][j].getPieceOnThisSquare() === pieceId) {
+                if(board[i][j].getPieceIdOnThisSquare() === pieceId) {
                     return [j, i];
                 }
             }

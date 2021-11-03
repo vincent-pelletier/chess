@@ -52,7 +52,7 @@ function createNewGame(gameId) {
 
 function newMove(move) {
     const gameId = move.gameId;
-    io.to(gameId).emite('opponent move', move);
+    io.to(gameId).emit('opponent move', move);
 }
 
 function onDisconnect() {

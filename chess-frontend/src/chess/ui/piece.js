@@ -8,8 +8,8 @@ const Piece = (props) => {
     const [image] = useImage(props.imgurls[choiceOfColor]); // does not work with local images
     const isDragged = props.id === props.draggedPieceTargetId;
 
-    const canThisPieceBeMoved = props.isWhite === props.thisPlayersColorIsWhite;
-    const isItThatPlayersTurn = props.playerTurnToMoveIsWhite === props.thisPlayersColorIsWhite;
+    const canThisPieceBeMoved = props.isWhite === props.thisPlayerIsWhite;
+    const isItThatPlayersTurn = props.playerTurnToMoveIsWhite === props.thisPlayerIsWhite;
 
     const thisWhiteKingInCheck = props.id === "wk1" && props.whiteKingInCheck;
     const thisBlackKingInCheck = props.id === "bk1" && props.blackKingInCheck;

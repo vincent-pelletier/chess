@@ -45,7 +45,7 @@ class ChessGame extends React.Component {
         var whiteCheckmated = false;
         const update = currentGame.movePiece(selectedId, finalPosition, isMyMove);
 
-        if(update === "moved in the same position.") {
+        if(update === "moved in the same position") {
             this.revertToPreviousState(selectedId);
             return;
         } else if(update === "user tried to capture their own piece") {
@@ -54,8 +54,15 @@ class ChessGame extends React.Component {
         } else if (update === "b is in check" || update === "w is in check") {
             if(update[0] === "b") {
                 blackKingInCheck = true;
-            } else 
-            whiteKingInCheck = true;
+            } else {
+                whiteKingInCheck = true;
+            }
+        } else if(update === "b has been checkmated" || update === "w has been checkmated") {
+            if(update[0] === "b") {
+                blackCheckmated = true;
+            } else {
+                whiteCheckmated = true;
+            }
         } else if(update === "invalid move") {
             this.revertToPreviousState(selectedId);
             return;
@@ -167,6 +174,7 @@ class ChessGame extends React.Component {
                                                 onDragStart = {this.startDragging}
                                                 onDragEnd = {this.endDragging}
                                                 id = {square.getPieceIdOnThisSquare()}
+                                                key = {square.getPieceIdOnThisSquare()}
                                                 thisPlayerIsWhite = {this.props.color}
                                                 playerTurnToMoveIsWhite = {this.state.playerTurnToMoveIsWhite}
                                                 whiteKingInCheck = {this.state.whiteKingInCheck}
